@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Photo Gallery</title>
+
+    <link rel="stylesheet"
+          href="/static/css/style.css">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>My Photo Gallery</h1>
+
+    <div>
+
+        <span>
+            Welcome, {{ user.name }}
+        </span>
+
+        <a href="/logout" class="logout">
+            Logout
+        </a>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <h2>Photo Gallery</h2>
+
+    <div class="gallery">
+
+        {% for image in images %}
+
+        <div class="photo-card">
+
+            <img
+                src="/static/images/{{ image }}"
+                alt="{{ image }}"
+                onclick="openImage(this)"
+            >
+
+            <h3>{{ image }}</h3>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</main>
+
+
+<!-- =====================================================
+     IMAGE POPUP
+===================================================== -->
+
+<div id="imageModal" class="image-modal">
+
+    <span class="close-button" onclick="closeImage()">
+        &times;
+    </span>
+
+    <img id="modalImage" class="modal-image">
+
+</div>
+
+
+<script>
+
+function openImage(image) {
+
+    const modal = document.getElementById("imageModal");
+
+    const modalImage = document.getElementById("modalImage");
+
+    modalImage.src = image.src;
+
+    modal.style.display = "flex";
+}
+
+
+function closeImage() {
+
+    const modal = document.getElementById("imageModal");
+
+    modal.style.display = "none";
+}
+
+
+document.getElementById("imageModal").addEventListener(
+    "click",
+    function(event) {
+
+        if (event.target === this) {
+
+            closeImage();
+
+        }
+
+    }
+);
+
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Escape") {
+
+            closeImage();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>
+

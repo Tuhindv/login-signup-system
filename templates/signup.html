@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Signup - Photo Gallery</title>
+
+    <link rel="stylesheet"
+          href="/static/css/style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>Photo Gallery</h1>
+
+        <h2>Create Account</h2>
+
+
+        <!-- ============================= -->
+        <!-- Email Already Exists -->
+        <!-- ============================= -->
+
+        {% if request.query_params.get("error") == "exists" %}
+
+        <div class="error-message">
+            ⚠️ This email is already registered.
+        </div>
+
+        {% endif %}
+
+
+        <!-- ============================= -->
+        <!-- Password Mismatch -->
+        <!-- ============================= -->
+
+        {% if request.query_params.get("error") == "password" %}
+
+        <div class="error-message">
+            ❌ Passwords do not match.
+        </div>
+
+        {% endif %}
+
+
+        <!-- ============================= -->
+        <!-- Signup Form -->
+        <!-- ============================= -->
+
+        <form action="/signup" method="post">
+
+            <label>Name</label>
+
+            <input
+                type="text"
+                name="name"
+                placeholder="Enter your name"
+                required
+            >
+
+
+            <label>Email</label>
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+            >
+
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Create password"
+                required
+            >
+
+
+            <label>Confirm Password</label>
+
+            <input
+                type="password"
+                name="confirm_password"
+                placeholder="Confirm password"
+                required
+            >
+
+
+            <button type="submit">
+                Sign Up
+            </button>
+
+        </form>
+
+
+        <p>
+            Already have an account?
+            <a href="/">Login</a>
+        </p>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
+

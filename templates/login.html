@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Login - Photo Gallery</title>
+
+    <link rel="stylesheet"
+          href="/static/css/style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>Photo Gallery</h1>
+
+        <h2>Login</h2>
+
+
+        <!-- ============================= -->
+        <!-- Error Message -->
+        <!-- ============================= -->
+
+        {% if request.query_params.get("error") == "invalid" %}
+
+        <div class="error-message">
+            ❌ Invalid email or password
+        </div>
+
+        {% endif %}
+
+
+        <!-- ============================= -->
+        <!-- Signup Success Message -->
+        <!-- ============================= -->
+
+        {% if request.query_params.get("success") == "signup" %}
+
+        <div class="success-message">
+            ✅ Signup successful! Please login.
+        </div>
+
+        {% endif %}
+
+
+        <!-- ============================= -->
+        <!-- Login Form -->
+        <!-- ============================= -->
+
+        <form action="/login" method="post">
+
+            <label>Email</label>
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+            >
+
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Enter your password"
+                required
+            >
+
+
+            <button type="submit">
+                Login
+            </button>
+
+        </form>
+
+
+        <p>
+            Don't have an account?
+            <a href="/signup">Sign Up</a>
+        </p>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
+
